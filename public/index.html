@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Điều Khiển Hệ Thống Nông Nghiệp</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+</head>
+<body>
+  <div id="login-container">
+    <h2>Đăng nhập để truy cập hệ thống</h2>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Mật khẩu" required>
+    <button id="login-button">Đăng nhập</button>
+    <p id="login-error" style="color: red;"></p>
+  </div>
+
+  <!-- Toàn bộ giao diện điều khiển (ẩn ban đầu) -->
+  <div class="container" style="display: none;">
+    <!-- Thêm nút đăng xuất ở góc trên bên phải -->
+    <div style="text-align: right; margin-bottom: 10px;">
+      <button id="logout-button" class="logout-btn">Đăng xuất</button>
+    </div>
+    <div class="container">
+      <h1>
+        ĐIỀU KHIỂN HỆ THỐNG NÔNG NGHIỆP<br>
+        <span class="author-name">Lê Văn Dương</span>
+      </h1>
+        
+        <div class="status-container">
+            <div class="status-card">
+                <h2>TRẠNG THÁI HỆ THỐNG</h2>
+                <p>Chế độ: <span id="system-mode">--</span></p>
+                <p>WiFi: <span id="wifi-status">--</span></p>
+            </div>
+        </div>
+
+        <div class="sensor-container">
+            <div class="sensor-card">
+                <h2>CẢM BIẾN ĐỘ ẨM ĐẤT</h2>
+                <div class="gauge" id="moisture-gauge"></div>
+                <p>Giá trị: <span id="moisture-value">--</span>%</p>
+            </div>
+
+            <div class="sensor-card">
+                <h2>CẢM BIẾN ÁNH SÁNG</h2>
+                <div class="gauge" id="light-gauge"></div>
+                <p>Giá trị: <span id="light-value">--</span>%</p>
+            </div>
+
+            <div class="sensor-card">
+                <h2>NHIỆT ĐỘ & ĐỘ ẨM</h2>
+                <div class="temp-humi">
+                    <p>Nhiệt độ: <span id="temp-value">--</span>°C</p>
+                    <p>Độ ẩm: <span id="humi-value">--</span>%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-container">
+            <div class="control-card">
+                <h2>ĐIỀU KHIỂN BƠM NƯỚC</h2>
+                <div class="switch-container">
+                    <label class="switch">
+                        <input type="checkbox" id="relay-switch">
+                        <span class="slider"></span>
+                    </label>
+                    <span id="relay-status">OFF</span>
+                </div>
+                <p>Độ ẩm đất: <span id="soil-moisture">--</span>%</p>
+            </div>
+
+            <div class="control-card">
+                <h2>ĐIỀU KHIỂN ĐÈN</h2>
+                <div class="switch-container">
+                    <label class="switch">
+                        <input type="checkbox" id="tip122-switch">
+                        <span class="slider"></span>
+                    </label>
+                    <span id="tip122-status">OFF</span>
+                </div>
+                <p>Mức ánh sáng: <span id="light-level">--</span>%</p>
+            </div>
+        </div>
+
+        <div class="mode-container">
+            <button id="mode-toggle" class="mode-btn">CHUYỂN SANG CHẾ ĐỘ TỰ ĐỘNG</button>
+        </div>
+    </div>
+  </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
